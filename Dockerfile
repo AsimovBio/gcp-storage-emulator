@@ -12,7 +12,7 @@ ENV STORAGE_DIR storage
 WORKDIR $APP_HOME
 COPY README.md pyproject.toml setup.py ./
 COPY src src/
-RUN pip install .
+RUN pip install setuptools && pip install .
 RUN apt-get update && apt-get install -y curl
 
 ENTRYPOINT ["gcp-storage-emulator"]
