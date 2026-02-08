@@ -60,10 +60,9 @@ setup(
     install_requires=[
         "fs",
         "google-crc32c",
-        # setuptools is needed at runtime (fs uses pkg_resources) but listing it
-        # here isn't sufficient — pip's build isolation can consider it "already
-        # satisfied" from pyproject.toml build deps. It's installed explicitly in
-        # the Dockerfile instead.
+        # fs uses pkg_resources at runtime but doesn't declare this dependency.
+        # setuptools v82 removed pkg_resources, so we pin to <82.
+        "setuptools<82",
     ],
     python_requires=">=3.8",
 )
