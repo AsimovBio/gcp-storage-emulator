@@ -12,6 +12,8 @@ ENV STORAGE_DIR storage
 WORKDIR $APP_HOME
 COPY README.md pyproject.toml setup.py ./
 COPY src src/
+# The `fs` package uses pkg_resources but doesn't declare setuptools as a dependency.
+# Python 3.12 no longer bundles setuptools, so we install it explicitly.
 RUN pip install setuptools && pip install .
 RUN apt-get update && apt-get install -y curl
 
